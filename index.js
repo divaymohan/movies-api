@@ -1,20 +1,41 @@
+//databse module
 const mongoose =  require('mongoose');
+
+//third party modules
 const Joi = require('joi');
-const express =  require('express');
-const debug = require('debug');
+const debugConnect = require('debug')('movies:Connect');
+const debugEnv = require('debug')('movies:Env');
 const helmet = require('helmet');
 const morgan = require('morgan');
+
+//express for restFul api
+const express =  require('express');
+
+//custom module
+const movies = require('./routes/movies');
+
 //main app
 const app = express();
- //middleware
+
+//middleware
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(helmet());
+
+if(app.get('env') === "development"){
+    debugEnv('welcome to development environment.');
+    debugEnv('Loading morgan for help');
+    app.use(morgan('tiny'));
+    debugEnv('Morgan enabled.');
+
+
+}
 
 
 app.get('/',(req,res)=>{
     res.send('Hello i am from a movie api..!!');
 })
+app.use('/api/movies',movies);
 
 
 const port = process.env.PORT | 3000;
