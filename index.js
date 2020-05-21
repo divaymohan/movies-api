@@ -17,6 +17,7 @@ const movies = require('./routes/movies');
 //main app
 const app = express();
 
+
 //middleware
 app.use(express.json());
 app.use(express.urlencoded());
@@ -27,11 +28,15 @@ if(app.get('env') === "development"){
     debugEnv('Loading morgan for help');
     app.use(morgan('tiny'));
     debugEnv('Morgan enabled.');
-
-
 }
 
+//connection to database
+mongoose.connect('mongodb://localhost/movies-backend-service')
+        .then(()=>debugConnect('Connected to database.'))
+        .catch(err=> debugConnect(`Error in connecting: ${err.message}`));
 
+
+        
 app.get('/',(req,res)=>{
     res.send('Hello i am from a movie api..!!');
 })
