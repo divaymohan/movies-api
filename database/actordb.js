@@ -14,10 +14,10 @@ const schema = new mongoose.Schema({
         minlength:3
     },
     age: {
-        type: String,
+        type: Number,
         //required: true,
-        maxlength: 15,
-        minlength: 3
+        max: 100,
+        min: 3
     },
     dob:{
         type: Date,
