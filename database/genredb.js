@@ -54,5 +54,13 @@ async function addNewGenre(new_genre){
     return genre;
 }
 
+module.exports = {
+    getGenres: getGenres,
+    getGenreById: getGenreById,
+    deleteGenre: deleteGenre,
+    updateGenre: updateGenre,
+    addNewGenre: addNewGenre
+}
+
 
 
