@@ -34,7 +34,7 @@ const schema = new mongoose.Schema({
 
     },
     description:{
-        type: Text,
+        type: String,
         minlength: 10,
         maxlength: 1000
     }
